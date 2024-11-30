@@ -1,4 +1,6 @@
 import express, { Request, Response } from 'express';
+import swaggerUi from 'swagger-ui-express';
+import YAML from './openSpec.yaml'; // If your spec is in YAML format
 
 // Initialize Express app
 const app = express();
@@ -20,9 +22,15 @@ const users: User[] = [
 // Middleware to parse JSON
 app.use(express.json());
 
+// Load OpenAPI spec
+const swaggerDocument = YAML.load('./openapi.yaml'); // Path to your OpenAPI YAML file
+
+// Serve Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 // Home route
 app.get('/', (req: Request, res: Response) => {
-  res.send('Welcome to the Express Server!');
+  res.send('Welcome to the Express Server! Visit /api-docs for API documentation.');
 });
 
 // Get all users
@@ -45,4 +53,5 @@ app.get('/users/:id', (req: Request, res: Response) => {
 // Start the server
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
+  console.log(`Swagger UI available at http://localhost:${port}/api-docs`);
 });
