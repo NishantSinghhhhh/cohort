@@ -7,19 +7,20 @@ interface Game{
 
 }
 
-// export class RedisGameManager implements GameManagerInterface{
-//     games: Game[] = [];
-// }
-
 // static variables and methods
-// singletons , stratergy pattern
+// singletons, startergy patterns
+ 
 export class GameManager{
     games: Game[] = [];
 
-   private constructor(){
+    constructor(){
         this.games = [];
     }
 
+    static clear(){
+        // this.games = [];
+        // add logic to clear the games
+    }
     addMove(gameId: string, move: string){
        console.log(` adding move ${move} to game ${gameId}`);
        const game = this.games.find((game) => game.id === gameId);
@@ -39,9 +40,16 @@ export class GameManager{
     log(){
         console.log(this.games);
     }
-    
 }
 
 export const gameManager = new GameManager();
-gameManager.add
+
+
+// gameManager.add
 // export const games:Game[] = [];
+// export const games = [];
+// export function createGame(){
+//     const game = {
+//         id
+//     }
+// }
