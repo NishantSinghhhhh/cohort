@@ -38,5 +38,5 @@ if (cluster.isPrimary) {
         res.send(`Final count is ${count} from process ${process.pid}`);
     });
 
-    app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+    app.listen(PORT, () => console.log(`Server is running on  port ${PORT}`));
 }
